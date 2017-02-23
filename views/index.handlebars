@@ -1,0 +1,58 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 text-center" id="top-bar">
+			<img src="/assets/images/burger.png" alt="burger" />
+			<h1> Eat-Da-Burger! </h1>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-6 text-center" class="task">
+				<div class="col-sm-6 col-xs-12">
+					<h2>Ready to Devour</h2>
+					<ul id="uneaten">
+						{{#each burgers}} {{#unless this.devoured}}
+						<li>
+							<div class="uneaten-burger">
+								{{this.id}} {{this.burger_name}}
+							</div>
+							<form class="devour-btn" action="/{{this.id}}?_method=PUT" method="POST">
+								<input type="hidden" name="devoured" value="true">
+								<button class="btn btn-primary" type="submit">Devour it!</button>
+							</form>
+						</li>
+						{{/unless}} {{/each}}
+					</ul>
+				</div>
+			</div>
+			<div class="col-xs-6 text-center" class="task">
+				<div class="col-sm-6 col-xs-12">
+					<h2>Already Devoured</h2>
+					<ul id="eaten">
+						{{#each burgers}} {{#if this.devoured}}
+						<li>
+							<div class="eaten-burger">
+								{{this.id}} {{this.burger_name}}
+							</div>
+						</li>
+						{{/if}} {{/each}}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 text-center enter_section">
+			<form class="create-update-form" action="/" method="POST">
+				<div class="form-group">
+					<label for="burger">Burger Name: </label>
+					<input type="text" id="burger" name="burger_name">
+				</div>
+				<button class="btn btn-primary" type="submit">Submit</button>
+			</form>
+			<p>Enter a burger you want to eat Click the "Submit" button.</p>
+		</div>
+	</div>
+</div>
